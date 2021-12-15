@@ -1,0 +1,1 @@
+This Project will use github's api to find good first issues for new programers with an interest in blockchain technology. 
