@@ -1,0 +1,9 @@
+<% issues.forEach((issue => { %>
+    <article>
+        <h2><%= issue.title %></h2>
+        <p>State: <%= issue.state %></p>
+        <a href="<%= issue.repo %>" target="_blank">,::REPO::,</a>
+        <p><%= issue.body %></p>
+        <a href="<%= issue.url %>" target="_blank">See it on git hub!</a>
+    </article>
+<% })) %>

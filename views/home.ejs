@@ -10,7 +10,15 @@
     </head>
     <body>
         <h1>  Good First Crypto Issues </h1>
-        
-        <!-- <script src=""></script> -->
+
+        <div class="options">
+            <form action="/searchTerm/" method="post">
+                <label for="search_term">serch for: </label>
+                <input id="search_term" type="text" name="search_term" value="which blockchain?">
+                <input type="submit" value="OK">
+            </form>
+        </div>
+            <%- include('./layout/issues.ejs') %>
+        <script src="../server.js"></script>
     </body>
 </html>
