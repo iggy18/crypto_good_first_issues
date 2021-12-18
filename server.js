@@ -24,6 +24,8 @@ app.set('view engine', 'ejs')
 const detailRoute = require('./routes/detail');
 const oopsRoute = require('./routes/oops');
 
+// import handlers
+
 //import helpers
 const helpers = require('./helper/helpers.js');
 
@@ -34,30 +36,6 @@ app.use("/oops", oopsRoute);
 
 // landing page
 app.get('/', handleHome);
-
-// constructor functions
-// function issues(issue){
-//     console.log(issue);
-//     this.title = issue.title;
-//     this.body = issue.body;
-//     this.url = issue.html_url;
-//     this.state = issue.state;
-//     this.repo = issue.repository_url;
-// }
-
-// function mapResponseToConstructor(obj, constructor){
-//     let body = obj.data.items
-    
-//     if( constructor === 'issues'){
-//         let listOfProblems = body.map((issue => {
-//             return new issues(issue);
-//         }));
-//         return listOfProblems;
-//     } else{
-//         console.log('error: mapResponseToConstructor did not work');
-//     }
-// }
-
 
 //handlers
 function handleHome(req, res){
