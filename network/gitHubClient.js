@@ -2,11 +2,11 @@ require('dotenv').config()
 
 const axios = require('axios');
 
-const axiosClient = axios.create({
+const gitHubClient = axios.create({
     baseURL: `https://api.github.com`,
     headers: {
-        'authorization': `token ${process.env.TOKEN}`,
+        'authorization': `token ${process.env.GITTOKEN}`,
     }
 });
 
-module.exports = {axiosClient};
+module.exports = {gitHubClient};

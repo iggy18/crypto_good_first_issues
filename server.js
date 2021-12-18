@@ -14,12 +14,15 @@ const port = process.env.PORT;
 // import axios stuff;
 const axios = require('axios');
 
-const axiosClient = axios.create({
-    baseURL: `https://api.github.com`,
-    headers: {
-        'authorization': `token ${process.env.TOKEN}`,
-    }
-});
+//import axios endpoints?
+const  gitHub = require('./network/lib/issues.js');
+
+// const axiosClient = axios.create({
+//     baseURL: `https://api.github.com`,
+//     headers: {
+//         'authorization': `token ${process.env.TOKEN}`,
+//     }
+// });
 
 // static files
 app.use(express.static('public'));
@@ -49,15 +52,25 @@ function issues(issue){
     this.repo = issue.repository_url;
 }
 
+function mapResponseToConstructor(obj, constructor){
+    let body = obj.data.items
+    
+    if( constructor === 'issues'){
+        let listOfProblems = body.map((issue => {
+            return new issues(issue);
+        }));
+        return listOfProblems;
+    } else{
+        console.log('error: mapResponseToConstructor did not work');
+    }
+}
+
 
 //handlers
 function handleHome(req, res){
-    url = `/search/issues?q="substrate"+type:issue+state:open+label:"good first issue"+sort:updated`;
-    axiosClient.get(url)
-    .then(obj =>{
-        let listOfProblems = obj.data.items.map((issue => { 
-            return new issues(issue);
-        }));
+    gitHub.getIssues()
+    .then(obj =>{    
+        let listOfProblems = mapResponseToConstructor(obj, 'issues');
         res.render("home", {issues: listOfProblems});
     })
     .catch(err =>{
